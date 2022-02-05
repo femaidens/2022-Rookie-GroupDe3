@@ -4,7 +4,6 @@
 
 package frc.robot.Subsystems;
 import frc.robot.Robot;
-import frc.robot.Subsystems.UltrasonicTest;
 import frc.robot.RobotMap;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -34,21 +33,22 @@ public class Climber extends Subsystem {
   public static double B = 39; //37in in ticks --> slightly less than small arm height to hook small arm
   public static double C = 27; //2in in ticks --> from top to bottom of the big arm's clipper to unhook big arm
   public static double margin = 0.01;
-
-  public void driveStraight(double magnitude) {
+  /* leftUltra and rightUltra values will never be eqaul thus you want a margin to ensure that the values are at least similar*/
+  public void driveStraight(double magnitude) { 
     while (leftUltra.getRangeInches() > rightUltra.getRangeInches() + margin || leftUltra.getRangeInches() > rightUltra.getRangeInches() - margin) {
       Robot.driveTrain.driveStraight(0, magnitude, -0.05);
     }
     while (rightUltra.getRangeInches() > leftUltra.getRangeInches() + margin || rightUltra.getRangeInches() > leftUltra.getRangeInches() - margin) {
       Robot.driveTrain.driveStraight(0, magnitude, 0.05);
     }
-    Robot.driveTrain.driveStraight(0, magnitude, 0);
+    Robot.driveTrain.driveStraight(0, magnitude, 0); //when all done, move robot along the x-axis according to magnitude
   }
 
   public void midBar(){
+    Ultrasonic.setAutomaticMode(true);
     while (leftUltra.getRangeInches() > 65 && rightUltra.getRangeInches() > 65) {  //align robot using ultrasonic NOTE: what's being compared = distance from wall to bar - some inches
       driveStraight(0.5); //move robot past the mid rung
-  }
+    }
     while(leftArmEncoder.getPosition() < A){ //extending arms up above bar AFTER ALIGNED ROBOT
       leftArmMotor.set(0.5);
       rightArmMotor.set(0.5);
@@ -56,8 +56,8 @@ public class Climber extends Subsystem {
     while (leftUltra.getRangeInches() < 70 && rightUltra.getRangeInches() < 70) { //move robot forward until hits bar NOTE: what's being compared = distance from wall to bar
       driveStraight(-0.5);
     }
-    while(leftArmEncoder.getPosition() > B){ //retract arm down to hook big arms and then small arms 
-      leftArmMotor.set(-0.5); //when big arm retracts, we assume that the 
+    while(leftArmEncoder.getPosition() > B){ //retract big arms that will then also hook small arms 
+      leftArmMotor.set(-0.5); 
       rightArmMotor.set(-0.5);
     }
   }

@@ -25,11 +25,11 @@ public class Shooter2 extends Subsystem {
     shooterPis.set(DoubleSolenoid.Value.kForward);
   }
   public void spinMotor(){
-    int ticks = 25;
+    int ticks = 25; //until the bar/base gets latched in; encoder counts how much pulley moves
     if (encoder.getPositionOffset() < ticks){
       motor.set(0.5);
     }
-    else{
+    else{ //locks the bar (the base of the shooter)
       motor.set(0.0);
     }
   }
