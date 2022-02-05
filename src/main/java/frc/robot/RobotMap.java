@@ -39,5 +39,10 @@ public class RobotMap {
     public static int leftArmPisBackwardPort = 28;
     public static int rightArmPisForwardPort = 29;
     public static int rightArmPisBackwardPort = 30;
+    public static int leftUltra1Port = 31;
+    public static int leftUltra2Port = 32;
+    public static int rightUltra1Port = 33;
+    public static int rightUltra2Port = 34;
+
     
 }

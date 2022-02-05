@@ -14,7 +14,7 @@ public class UltrasonicTest extends Subsystem {
   public static Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ultrasonic1Port, RobotMap.ultrasonic2Port);
   public void getDistance(){
     Ultrasonic.setAutomaticMode(true);
-    System.out.println("Dist (in):" + ultrasonic.getRangeInches());
+    //System.println("Dist (in):" + ultrasonic.getRangeInches());
   }
 
   @Override

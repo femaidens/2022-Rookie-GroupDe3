@@ -20,6 +20,7 @@ public class DriveTrain extends Subsystem {
 	public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
 	public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
 	public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
+
 	public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
 	public MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
@@ -29,8 +30,8 @@ public class DriveTrain extends Subsystem {
 		mecanum.driveCartesian(OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort), OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort), gyro.getAngle());
 	}
 
-  public void driveStraight(double magnitude){
-    mecanum.driveCartesian(magnitude, 0, 0);
+  public void driveStraight(double x, double y, double z){
+    mecanum.driveCartesian(y, x, z);
   }
 
 

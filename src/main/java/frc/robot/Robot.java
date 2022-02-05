@@ -3,25 +3,20 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-import frc.robot.OI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 
-import frc.robot.Commands.Intake;
 import frc.robot.Subsystems.DriveTrain;
 import frc.robot.Subsystems.IntakeBall;
 import frc.robot.Subsystems.Shooter2;
+import frc.robot.Subsystems.*;
 
-import frc.robot.Commands.Shoot;
 import frc.robot.Subsystems.Shooter;
 
-import frc.robot.Commands.Shoot;
 import frc.robot.Subsystems.UltrasonicTest;
 import frc.robot.Commands.driveTeleop;
 
@@ -40,6 +35,7 @@ public class Robot extends TimedRobot {
   public static IntakeBall intake; 
   public static Shooter shooter; 
   public static Shooter2 shooter2;
+  public static Climber climber;
   public static UltrasonicTest ultrasonic;
   public static OI m_oi;
   
@@ -59,6 +55,7 @@ public class Robot extends TimedRobot {
     shooter = new Shooter();
     ultrasonic = new UltrasonicTest();
     shooter2 = new Shooter2();
+    climber = new Climber();
     m_oi = new OI();
     m_oi.bindButton();
     System.out.println("init");
