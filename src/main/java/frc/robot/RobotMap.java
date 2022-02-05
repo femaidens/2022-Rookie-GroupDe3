@@ -28,4 +28,9 @@ public class RobotMap {
     public static int rightIntakePisBackwardPort = 19;
     public static int ultrasonic1Port = 1;
     public static int ultrasonic2Port = 2;
+    public static int Shooter2MotorPort = 20;
+    public static int shooterPisForwardPort = 21;
+    public static int shooterPisBackwardPort = 22;
+    public static int shooter2EncoderPort = 23;
+    public static int shoot2Port = 24;
 }
