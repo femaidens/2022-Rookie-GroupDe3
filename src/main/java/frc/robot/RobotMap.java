@@ -33,4 +33,11 @@ public class RobotMap {
     public static int shooterPisBackwardPort = 22;
     public static int shooter2EncoderPort = 23;
     public static int shoot2Port = 24;
+    public static int leftArmMotorPort = 25;
+    public static int rightArmMotorPort = 26;
+    public static int leftArmPisForwardPort = 27;
+    public static int leftArmPisBackwardPort = 28;
+    public static int rightArmPisForwardPort = 29;
+    public static int rightArmPisBackwardPort = 30;
+    
 }
