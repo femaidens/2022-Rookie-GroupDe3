@@ -9,16 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
-
 import frc.robot.Subsystems.DriveTrain;
-import frc.robot.Subsystems.IntakeBall;
-import frc.robot.Subsystems.Shooter2;
-import frc.robot.Subsystems.*;
-
-import frc.robot.Subsystems.Shooter;
-
-import frc.robot.Subsystems.UltrasonicTest;
 import frc.robot.Commands.driveTeleop;
+import frc.robot.Subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -32,11 +25,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
-  public static IntakeBall intake; 
-  public static Shooter shooter; 
-  public static Shooter2 shooter2;
   public static Climber climber;
-  public static UltrasonicTest ultrasonic;
   public static OI m_oi;
   
 
@@ -51,10 +40,6 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     driveTrain = new DriveTrain(); 		//drivetrain MUST be first!!!
-    intake = new IntakeBall();
-    shooter = new Shooter();
-    ultrasonic = new UltrasonicTest();
-    shooter2 = new Shooter2();
     climber = new Climber();
     m_oi = new OI();
     m_oi.bindButton();

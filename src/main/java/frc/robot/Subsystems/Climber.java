@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Subsystems.UltrasonicTest;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
 /** Add your docs here. */
