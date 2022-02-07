@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 
 /** Add your docs here. */
 public class Climber extends Subsystem {
+  
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static CANSparkMax leftArmMotor = new CANSparkMax(RobotMap.leftArmMotorPort, MotorType.kBrushless);
