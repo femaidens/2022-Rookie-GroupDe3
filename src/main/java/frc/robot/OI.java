@@ -5,13 +5,14 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.Commands.Intake;
 
 /** Add your docs here. */
 public class OI {
     public static Joystick leftJoy = new Joystick(RobotMap.leftJoyPort);
     public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
-    public static Button shoot = new JoystickButton(leftJoy, RobotMap.shootPort);
-    public static Button shoot2 = new JoystickButton(rightJoy, RobotMap.shoot2Port);
+    public static Joystick intakeButton = new Joystick(RobotMap.intakeButtonPort);
     public void bindButton(){
+        intakeButton.whileHeld(new Intake());
     }
 }
