@@ -25,6 +25,21 @@ public class DriveTrain extends Subsystem {
 
 	public MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 
+  public void turnDegrees(double degrees){
+    if (degrees <= 180 && degrees >=0) {
+      while (gyro.getAngle() < degrees) {
+        mecanum.driveCartesian(0, 0, 0.5);
+      }
+    } else if (degrees > 180) {
+      while (gyro.getAngle() > degrees) {
+        mecanum.driveCartesian(0, 0, -0.5);
+      }
+    } else {
+      while (gyro.getAngle() > degrees + 360) {
+        mecanum.driveCartesian(0, 0, -0.5);
+      }
+    }
+  }
 
 	public void driveTeleop(){
 		mecanum.driveCartesian(OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort), OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort), gyro.getAngle());
