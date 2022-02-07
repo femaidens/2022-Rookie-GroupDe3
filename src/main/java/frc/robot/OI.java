@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj.Joystick;
 public class OI {
     public static Joystick leftJoy = new Joystick(RobotMap.leftJoyPort);
     public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
-    public static Button shoot = new JoystickButton(leftJoy, RobotMap.shootPort);
-    public static Button shoot2 = new JoystickButton(rightJoy, RobotMap.shoot2Port);
     public void bindButton(){
     }
 }
