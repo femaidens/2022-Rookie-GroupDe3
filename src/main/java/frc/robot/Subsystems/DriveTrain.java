@@ -47,9 +47,10 @@ public class DriveTrain extends Subsystem {
       }
     } else if (degrees > 180) {  
         mecanum.driveCartesian(0, 0, -0.5);
-      while (gyro.getAngle() > degrees) { //robot constantly turns to the left
-        mecanum.driveCartesian(0, 0, -0.5);
-      }
+        while (gyro.getAngle() > degrees) { 
+        //robot constantly turns to the left; say wanted degrees is 275, thus robot turns left until its gyroPos is =/< 275
+          mecanum.driveCartesian(0, 0, -0.5);
+        }
     }
   }
 
@@ -62,15 +63,18 @@ public class DriveTrain extends Subsystem {
   }
 
   public void driveDistance(double ticks) {
-    leftEncoder.setPosition(0);
-    rightEncoder.setPosition(0);
-    while (leftEncoder.getPosition() > rightEncoder.getPosition() + margin || leftEncoder.getPosition()  > rightEncoder.getPosition() - margin) {
-      mecanum.driveCartesian(0, 0.5, -0.05);
+    double margin = 5;
+    double originalAngle = gyro.getAngle(); 
+
+    while (leftEncoder.getPosition() < ticks) {
+      if (gyro.getAngle() - originalAngle - margin > 180 || gyro.getAngle() - originalAngle + margin > 300) {
+        mecanum.driveCartesian(0, 0.5, 0.05);
+      } else if (gyro.getAngle() < 180 && (gyro.getAngle() - originalAngle - margin > 0 || gyro.getAngle() - originalAngle + margin > 0)) {
+        mecanum.driveCartesian(0, 0.5, -0.05);
+      } else {//above two while loops align robot straight (like done previously for climb)
+        mecanum.driveCartesian(0, 0.5, 0); //when all done, move robot along the x-axis according to magnitude
+      }
     }
-    while (rightEncoder.getPosition() > leftEncoder.getPosition()  + margin || rightEncoder.getPosition() > leftEncoder.getPosition() - margin) {
-      mecanum.driveCartesian(0, 0.5, 0.05);
-    }
-    mecanum.driveCartesian(0, 0.5, 0); //when all done, move robot along the x-axis according to magnitude
   }
 
 
