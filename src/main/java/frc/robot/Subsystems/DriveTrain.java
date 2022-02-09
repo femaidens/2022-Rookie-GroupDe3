@@ -57,6 +57,7 @@ public class DriveTrain extends Subsystem {
   */
   public void turnDegrees(double angle){
     if ((angle >= 180 && gyro.getAngle() >= 180) || (angle < 180 && gyro.getAngle() < 180)){
+      //if angle on same side of circle as gyro
       while (gyro.getAngle() > angle){
         mecanum.driveCartesian(0.5, 0, -0.5);
       }
@@ -64,20 +65,30 @@ public class DriveTrain extends Subsystem {
         mecanum.driveCartesian(0.5, 0, 0.5);
       }
     }
-    else if (angle > 180 && gyro.getAngle() <= 180){
-      if (gyro.getAngle() + (360-angle) < angle - gyro.getAngle()){
+    else if (angle > 180 && gyro.getAngle() <= 180){ //if angle on left side of circle and gyro on right side of circle
+      if (gyro.getAngle() + (360-angle) < angle - gyro.getAngle()){ 
+        //gyro.getAngle() + (360-angle) = out angle; angle - gyro.getAngle() = inside angle
         while (gyro.getAngle() + 360 > angle){
           mecanum.driveCartesian(0.5, 0, -0.5);
         }
       }
-      else if (gyro.getAngle() + (360-angle) > angle - gyro.getAngle()){
+      else if (gyro.getAngle() + (360-angle) > angle - gyro.getAngle()){ 
         while (gyro.getAngle() < angle){
           mecanum.driveCartesian(0.5, 0, 0.5);
         }
       }
     }
-    else if (angle < 180 && gyro.getAngle() > 180){
-      
+    else if (angle < 180 && gyro.getAngle() > 180){ //if angle on right side of circle and gyro on left side of circle
+      if (gyro.getAngle() + (360-angle) < gyro.getAngle() - angle){ //gyro.getAngle() - angle = inside angle
+        while(gyro.getAngle() < angle + 360){
+          mecanum.driveCartesian(0.5, 0, -0.5);
+        }
+      }
+      if (gyro.getAngle() + (360-angle) > gyro.getAngle() - angle){ //robot turns right to hit angle 
+        while(gyro.getAngle() > angle){
+          mecanum.driveCartesian(0.5, 0, 0.5);
+        }
+      }
     }
   }
 
