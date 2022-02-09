@@ -56,15 +56,29 @@ public class DriveTrain extends Subsystem {
   }
   */
   public void turnDegrees(double angle){
-    if (angle > 180){
-      while (gyro.getAngle() + 360 > angle){
-        mecanum.driveCartesian(0.5, 0, -0.5); 
+    if ((angle >= 180 && gyro.getAngle() >= 180) || (angle < 180 && gyro.getAngle() < 180)){
+      while (gyro.getAngle() > angle){
+        mecanum.driveCartesian(0.5, 0, -0.5);
+      }
+      while(gyro.getAngle() < angle){
+        mecanum.driveCartesian(0.5, 0, 0.5);
       }
     }
-    while (gyro.getAngle() < angle ){
-      mecanum.driveCartesian(0.5,0, 0.5);
+    else if (angle > 180 && gyro.getAngle() <= 180){
+      if (gyro.getAngle() + (360-angle) < angle - gyro.getAngle()){
+        while (gyro.getAngle() + 360 > angle){
+          mecanum.driveCartesian(0.5, 0, -0.5);
+        }
+      }
+      else if (gyro.getAngle() + (360-angle) > angle - gyro.getAngle()){
+        while (gyro.getAngle() < angle){
+          mecanum.driveCartesian(0.5, 0, 0.5);
+        }
+      }
     }
-
+    else if (angle < 180 && gyro.getAngle() > 180){
+      
+    }
   }
 
 	public void driveTeleop(){
