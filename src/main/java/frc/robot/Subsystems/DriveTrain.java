@@ -92,6 +92,29 @@ public class DriveTrain extends Subsystem {
     }
   }
 
+  public void turnDegrees2(double angle) {
+    if (angle > 180) {
+      angle = 360 - angle;
+      while (360 - gyro.getAngle() != angle) {
+        if (360 - gyro.getAngle() > angle) {
+          mecanum.driveCartesian(0, 0, -0.5);
+        } else if (360 - gyro.getAngle() < angle) {
+          mecanum.driveCartesian(0, 0, 0.5);
+        }
+      }
+    } 
+    
+    else { //angle < 180
+      while ((gyro.getAngle()) != angle) {
+        if (gyro.getAngle() < angle) {
+          mecanum.driveCartesian(0, 0, 0.5);
+        } else if (gyro.getAngle() > angle) {
+          mecanum.driveCartesian(0, 0, -0.5);
+        }
+      }
+    }
+  }
+
 	public void driveTeleop(){
 		mecanum.driveCartesian(OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort), OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort), gyro.getAngle());
 	}
