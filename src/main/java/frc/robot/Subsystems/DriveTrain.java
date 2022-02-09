@@ -33,7 +33,7 @@ public class DriveTrain extends Subsystem {
 
   public static double margin = 0.01;
 
-  public void turnDegrees(double degrees){
+  /* public void turnDegrees(double degrees){
     degrees -= gyro.getAngle(); 
     //ex: if robot is already at a certain degree (told by getGyro), then subtracting -> degrees that robot will need to turn
     if (degrees > 360) {
@@ -41,6 +41,7 @@ public class DriveTrain extends Subsystem {
     } else if (degrees < 0) {
       degrees += 360;
     }
+
     if (degrees <= 180 && degrees >=0) { //robot constantly turns to the right
       while (gyro.getAngle() < degrees) {
         mecanum.driveCartesian(0, 0, 0.5);
@@ -52,6 +53,18 @@ public class DriveTrain extends Subsystem {
           mecanum.driveCartesian(0, 0, -0.5);
         }
     }
+  }
+  */
+  public void turnDegrees(double angle){
+    if (angle > 180){
+      while (gyro.getAngle() + 360 > angle){
+        mecanum.driveCartesian(0.5, 0, -0.5); 
+      }
+    }
+    while (gyro.getAngle() < angle ){
+      mecanum.driveCartesian(0.5,0, 0.5);
+    }
+
   }
 
 	public void driveTeleop(){
@@ -67,7 +80,7 @@ public class DriveTrain extends Subsystem {
     double originalAngle = gyro.getAngle(); 
 
     while (leftEncoder.getPosition() < ticks) {
-      if (gyro.getAngle() - originalAngle - margin > 180 || gyro.getAngle() - originalAngle + margin > 300) {
+      if (gyro.getAngle() - originalAngle - margin > 180 || gyro.getAngle() - originalAngle + margin > 180) {
         mecanum.driveCartesian(0, 0.5, 0.05);
       } else if (gyro.getAngle() < 180 && (gyro.getAngle() - originalAngle - margin > 0 || gyro.getAngle() - originalAngle + margin > 0)) {
         mecanum.driveCartesian(0, 0.5, -0.05);
