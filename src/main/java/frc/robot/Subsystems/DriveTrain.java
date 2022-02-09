@@ -65,9 +65,9 @@ public class DriveTrain extends Subsystem {
         mecanum.driveCartesian(0.5, 0, 0.5);
       }
     }
-    else if (angle > 180 && gyro.getAngle() <= 180){ //if angle on left side of circle and gyro on right side of circle
+    else if (angle > 180 && gyro.getAngle() <= 180){ //if angle on left side and gyro on right side
       if (gyro.getAngle() + (360-angle) < angle - gyro.getAngle()){ 
-        //gyro.getAngle() + (360-angle) = out angle; angle - gyro.getAngle() = inside angle
+        //gyro.getAngle() + (360-angle) = outside angle; angle - gyro.getAngle() = inside angle
         while (gyro.getAngle() + 360 > angle){
           mecanum.driveCartesian(0.5, 0, -0.5);
         }
