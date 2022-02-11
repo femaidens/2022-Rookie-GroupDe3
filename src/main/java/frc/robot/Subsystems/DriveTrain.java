@@ -33,7 +33,7 @@ public class DriveTrain extends Subsystem {
 
   public static double margin = 0.01;
 
-  /* public void turnDegrees(double degrees){
+  /*public void turnDegrees(double degrees){
     degrees -= gyro.getAngle(); 
     //ex: if robot is already at a certain degree (told by getGyro), then subtracting -> degrees that robot will need to turn
     if (degrees > 360) {
@@ -53,8 +53,8 @@ public class DriveTrain extends Subsystem {
           mecanum.driveCartesian(0, 0, -0.5);
         }
     }
-  }
-  */
+  } */
+  
   public void turnDegrees(double angle){
     if ((angle >= 180 && gyro.getAngle() >= 180) || (angle < 180 && gyro.getAngle() < 180)){
       //if angle on same side of circle as gyro
@@ -92,18 +92,17 @@ public class DriveTrain extends Subsystem {
     }
   }
 
-  public void turnDegrees2(double angle) {
-    if (angle > 180) {
-      angle = 360 - angle;
+  public void turnDegrees2(double angle) { //ISSUE: gyro = 200 ddeg, wanted angle = 359 deg
+    if (angle > 180) { //ex: angle = 260; gyro angle = 60
+      angle = 360 - angle; // Ex: angle = 359, thus 360 - 359 = 1 deg
       while (360 - gyro.getAngle() != angle) {
-        if (360 - gyro.getAngle() > angle) {
+        if (360 - gyro.getAngle() > angle) { 
           mecanum.driveCartesian(0, 0, -0.5);
-        } else if (360 - gyro.getAngle() < angle) {
+        } else if (360 - gyro.getAngle() < angle) { 
           mecanum.driveCartesian(0, 0, 0.5);
         }
       }
     } 
-    
     else { //angle < 180
       while ((gyro.getAngle()) != angle) {
         if (gyro.getAngle() < angle) {
