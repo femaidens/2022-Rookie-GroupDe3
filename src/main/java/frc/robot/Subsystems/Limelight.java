@@ -23,11 +23,12 @@ public class Limelight extends Subsystem {
   public static NetworkTableEntry ty = table.getEntry("ty");
 
   public void printValues(){
-    System.out.println("tv: " + tv.getDouble(0));
-    System.out.println("tx: " + tx.getDouble(0));
-    System.out.println("ta: " + ta.getDouble(0));
-    System.out.println("ts: " + ts.getDouble(0));
-    System.out.println("ty: " + ty.getDouble(0));
+    //System.out.println("tv: " + tv.getDouble(0));
+    //System.out.println("tx: " + tx.getDouble(0));
+    //System.out.println("ta: " + ta.getDouble(0));
+    //System.out.println("ts: " + ts.getDouble(0));
+    //System.out.println("ty: " + ty.getDouble(0));
+    System.out.println(tx.getDouble(0) + ", " + ty.getDouble(0));
   }
 
   @Override
