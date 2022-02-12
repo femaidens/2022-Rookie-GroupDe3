@@ -26,12 +26,12 @@ public class TankDrive extends Subsystem {
 
  
   public void driveStraight(double leftSpeed, double rightSpeed) {
-    frontLeft.set(-leftSpeed);
-    middleLeft.set(-leftSpeed);
-    backLeft.set(-leftSpeed);
-    frontRight.set(rightSpeed);
-    frontRight.set(rightSpeed);
-    frontRight.set(rightSpeed);
+    frontLeft.set(leftSpeed);
+    middleLeft.set(leftSpeed);
+    backLeft.set(leftSpeed);
+    frontRight.set(-rightSpeed); //neg b/c right motor's backwards
+    frontRight.set(-rightSpeed);
+    frontRight.set(-rightSpeed);
   }
 
   @Override

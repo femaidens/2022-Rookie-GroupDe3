@@ -40,8 +40,8 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    limelight = new Limelight();
     drivetrain = new TankDrive();
+    limelight = new Limelight();
     pid = new PID();
     m_oi = new OI();
     m_oi.bindButton();

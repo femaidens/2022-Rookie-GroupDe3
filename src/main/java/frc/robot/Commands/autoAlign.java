@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Subsystems.*;
 import frc.robot.Subsystems.Limelight;
 import frc.robot.Robot;
+import frc.robot.Subsystems.PID;
 import frc.robot.Subsystems.TankDrive;
 
 public class autoAlign extends Command {
-    private static final double KP = 0.1;
-    private static final double KI = 0.0;
+    private static final double KP = 0.07;
+    private static final double KI = 0.01;
     private static final double KD = 0.0;
     public static double speed;
     private static double min_error = 0.1;
@@ -24,7 +25,7 @@ public class autoAlign extends Command {
     static double adjust = 0.0;
     static double time = 0.1;
     private static double leftSpeed;
-    private static double rightSpeed; 
+    private static double rightSpeed; //for kermit, the right motor's the one backwards
   public autoAlign(double ls, double rs) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -51,7 +52,7 @@ public class autoAlign extends Command {
     else if (current_error < -min_error){
       adjust -= min_command;
     }
-    Robot.drivetrain.driveStraight(leftSpeed + adjust*.01, rightSpeed + adjust*.01);
+    Robot.drivetrain.driveStraight(leftSpeed + adjust*.01, rightSpeed - adjust*.01);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -59,13 +60,15 @@ public class autoAlign extends Command {
   protected boolean isFinished() {
     return false;
   }
-
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+    Robot.drivetrain.driveStraight(0.0, 0.0);
+  } //runs when toggle button is pressed again
 }

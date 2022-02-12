@@ -27,7 +27,7 @@ public class Limelight extends Subsystem {
     //System.out.println("ta: " + ta.getDouble(0));
     //System.out.println("ts: " + ts.getDouble(0));
     //System.out.println("ty: " + ty.getDouble(0));
-    System.out.println(tx.getDouble(0) + ", " + ty.getDouble(0));
+    System.out.println(tx.getDouble(0) + ", " + ty.getDouble(0));  //1st val = horizon dist from center; 2nd val = vert dis from center
   }
 
   public double getTx() {

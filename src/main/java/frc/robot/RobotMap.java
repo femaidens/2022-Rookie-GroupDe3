@@ -6,15 +6,15 @@ package frc.robot;
 
 /** Add your docs here. */
 public class RobotMap {
-    public static int frontLeftPort = 1;
-    public static int frontRightPort = 2;
-    public static int middleLeftPort = 3;
-    public static int middleRightPort = 4;
-    public static int backLeftPort = 5;
-    public static int backRightPort = 6;
-    public static int leftJoyPort = 7;
+    public static int frontLeftPort = 12;
+    public static int frontRightPort = 1;
+    public static int middleLeftPort = 13;
+    public static int middleRightPort = 5;
+    public static int backLeftPort = 7;
+    public static int backRightPort = 2;
+    public static int leftJoyPort = 15;
     public static int rightJoyPort = 8;
-    public static int alignButtonPort = 9;
+    public static int alignButtonPort = 1;
 
 
     
