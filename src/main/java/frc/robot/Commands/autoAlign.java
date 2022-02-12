@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Subsystems.*;
 import frc.robot.Subsystems.Limelight;
 import frc.robot.Robot;
+import frc.robot.Subsystems.TankDrive;
 
 public class autoAlign extends Command {
     private static final double KP = 0.1;
@@ -22,9 +23,14 @@ public class autoAlign extends Command {
     static double derivative = 0.0;
     static double adjust = 0.0;
     static double time = 0.1;
-  public autoAlign() {
+    private static double leftSpeed;
+    private static double rightSpeed; 
+  public autoAlign(double ls, double rs) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.drivetrain);
+    leftSpeed = ls;
+    rightSpeed = rs;
   }
 
   // Called just before this Command runs the first time
@@ -45,6 +51,7 @@ public class autoAlign extends Command {
     else if (current_error < -min_error){
       adjust -= min_command;
     }
+    Robot.drivetrain.driveStraight(leftSpeed + adjust*.01, rightSpeed + adjust*.01);
   }
 
   // Make this return true when this Command no longer needs to run execute()

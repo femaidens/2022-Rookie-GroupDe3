@@ -25,6 +25,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static Limelight limelight;
+  public static TankDrive drivetrain;
   public static PID pid;
   public static OI m_oi;
   
@@ -40,6 +41,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     limelight = new Limelight();
+    drivetrain = new TankDrive();
     pid = new PID();
     m_oi = new OI();
     m_oi.bindButton();

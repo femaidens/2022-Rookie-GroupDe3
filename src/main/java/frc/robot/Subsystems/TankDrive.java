@@ -23,13 +23,12 @@ public class TankDrive extends Subsystem {
   public static CANSparkMax middleRight = new CANSparkMax(RobotMap.middleRightPort, MotorType.kBrushless);
   public static CANSparkMax backLeft = new CANSparkMax(RobotMap.backLeftPort, MotorType.kBrushless);
   public static CANSparkMax backRight = new CANSparkMax(RobotMap.backRightPort, MotorType.kBrushless);
-  public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
-
+ 
   public void driveStraight(double leftSpeed, double rightSpeed) {
-    frontLeft.set(leftSpeed);
-    middleLeft.set(leftSpeed);
-    backLeft.set(leftSpeed);
+    frontLeft.set(-leftSpeed);
+    middleLeft.set(-leftSpeed);
+    backLeft.set(-leftSpeed);
     frontRight.set(rightSpeed);
     frontRight.set(rightSpeed);
     frontRight.set(rightSpeed);

@@ -4,15 +4,16 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.*;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.*;
+import frc.robot.Commands.autoAlign;
 
 /** Add your docs here. */
 public class OI {
     public static Joystick leftJoy = new Joystick(RobotMap.leftJoyPort);
     public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
+    public static Button alignButton = new JoystickButton(rightJoy, RobotMap.alignButtonPort);
     public void bindButton(){
-        
+        alignButton.whileHeld(new autoAlign(0.0, 0.0));
     }
 }

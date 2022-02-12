@@ -12,9 +12,9 @@ public class RobotMap {
     public static int middleRightPort = 4;
     public static int backLeftPort = 5;
     public static int backRightPort = 6;
-    public static int gyroPort = 7;
-    public static int leftJoyPort = 8;
-    public static int rightJoyPort = 9;
+    public static int leftJoyPort = 7;
+    public static int rightJoyPort = 8;
+    public static int alignButtonPort = 9;
 
 
     
