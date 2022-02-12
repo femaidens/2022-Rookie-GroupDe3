@@ -32,7 +32,7 @@ public class Limelight extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    Robot.limelight.setDefaultCommand(new printvalues());
+    setDefaultCommand(new printvalues());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

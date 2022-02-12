@@ -43,7 +43,6 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_oi.bindButton();
     System.out.println("init");
-
     limelight.setDefaultCommand(new printvalues());
   }
 
