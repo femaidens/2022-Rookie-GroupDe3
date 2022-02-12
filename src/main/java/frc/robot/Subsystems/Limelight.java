@@ -9,7 +9,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Commands.printvalues;
 
 /** Add your docs here. */
 public class Limelight extends Subsystem {
@@ -31,9 +30,12 @@ public class Limelight extends Subsystem {
     System.out.println(tx.getDouble(0) + ", " + ty.getDouble(0));
   }
 
+  public double getTx() {
+    return tx.getDouble(0);
+  }
+
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new printvalues());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
