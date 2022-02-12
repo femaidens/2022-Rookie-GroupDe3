@@ -79,11 +79,9 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     switch (m_autoSelected) {
       case kCustomAuto:
-      limelight.setDefaultCommand(new printvalues());
         // Put custom auto code here
         break;
       case kDefaultAuto:
-      limelight.setDefaultCommand(new printvalues());
       default:
         // Put default auto code here
         break;

@@ -3,11 +3,13 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Subsystems;
-
+import frc.robot.Robot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Commands.printvalues;
 
 /** Add your docs here. */
 public class Limelight extends Subsystem {
@@ -30,6 +32,7 @@ public class Limelight extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
+    Robot.limelight.setDefaultCommand(new printvalues());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
