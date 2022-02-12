@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+import frc.robot.Commands.printvalues;
 import frc.robot.Subsystems.*;
 import frc.robot.Subsystems.Limelight;
 
@@ -42,6 +43,8 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_oi.bindButton();
     System.out.println("init");
+
+    limelight.setDefaultCommand(new printvalues());
   }
 
   /**
@@ -76,9 +79,11 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     switch (m_autoSelected) {
       case kCustomAuto:
+      limelight.setDefaultCommand(new printvalues());
         // Put custom auto code here
         break;
       case kDefaultAuto:
+      limelight.setDefaultCommand(new printvalues());
       default:
         // Put default auto code here
         break;
