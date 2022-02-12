@@ -18,7 +18,7 @@ public class autoAlign extends Command {
     private static double min_command = 0.0;
     static double current_error = 0.0;
     static double previous_error = 0.0;
-    static double integral = 0.0;
+    static double integral = 0.0; 
     static double derivative = 0.0;
     static double adjust = 0.0;
     static double time = 0.1;
