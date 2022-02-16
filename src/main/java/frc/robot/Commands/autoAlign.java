@@ -12,8 +12,8 @@ import frc.robot.Subsystems.PID;
 import frc.robot.Subsystems.TankDrive;
 
 public class autoAlign extends Command {
-    private static final double KP = 0.07;
-    private static final double KI = 0.01;
+    private static final double KP = 0.0699;
+    private static final double KI = 0.03;
     private static final double KD = 0.0;
     public static double speed;
     private static double min_error = 0.1;
