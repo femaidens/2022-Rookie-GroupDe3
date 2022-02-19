@@ -44,9 +44,9 @@ public class ClimbPID extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    while (Robot.climber.leftUltra.getRangeInches() < dist + margin){//ultraspomc < distance + margin && ultraspomc > distance margin{
+    while (Climber.leftUltra.getRangeInches() < dist + margin){
       previous_error = current_error;
-      current_error = Robot.climber.leftUltra.getRangeInches();
+      current_error = Climber.leftUltra.getRangeInches();
       //subtraction -> if 0, the two ultrasons are aligned same
       integral += (current_error+previous_error)/2*(time);
       derivative = (current_error-previous_error)/time;
@@ -57,11 +57,12 @@ public class ClimbPID extends Command {
       else if (current_error < -min_error){
         adjust -= min_command;
       }
-      Robot.driveTrain.driveStraight(xSpeed + adjust*.01, ySpeed - adjust*.01, 0.2);
+      Robot.driveTrain.mecanum.driveCartesian(xSpeed + adjust*.01, ySpeed - adjust*.01, 0.2);
+      //must call driveCartesian on the mecanum object within the driveTrain object instance from Robot
     }
 
     previous_error = current_error;
-    current_error = Robot.climber.leftUltra.getRangeInches() - Robot.climber.rightUltra.getRangeInches();
+    current_error = Climber.leftUltra.getRangeInches() - Climber.rightUltra.getRangeInches();
     //subtraction -> if 0, the two ultrasons are aligned same
     integral += (current_error+previous_error)/2*(time);
     derivative = (current_error-previous_error)/time;
