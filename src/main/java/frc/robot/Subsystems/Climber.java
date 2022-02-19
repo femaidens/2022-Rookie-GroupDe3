@@ -37,12 +37,12 @@ public class Climber extends Subsystem {
   public void driveStraight(double magnitude) { 
     Ultrasonic.setAutomaticMode(true);
     while (leftUltra.getRangeInches() > rightUltra.getRangeInches() + margin || leftUltra.getRangeInches() > rightUltra.getRangeInches() - margin) {
-      Robot.driveTrain.driveStraight(0, magnitude, -0.05);
+      Robot.driveTrain.drive(0, magnitude, -0.05); //drivecartesian
     }
     while (rightUltra.getRangeInches() > leftUltra.getRangeInches() + margin || rightUltra.getRangeInches() > leftUltra.getRangeInches() - margin) {
-      Robot.driveTrain.driveStraight(0, magnitude, 0.05);
+      Robot.driveTrain.drive(0, magnitude, 0.05);
     }
-    Robot.driveTrain.driveStraight(0, magnitude, 0); //when all done, move robot along the x-axis according to magnitude
+    Robot.driveTrain.drive(0, magnitude, 0); //when all done, move robot along the x-axis according to magnitude
   }
 
   public void midBar(){

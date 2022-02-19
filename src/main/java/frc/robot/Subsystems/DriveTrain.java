@@ -30,7 +30,7 @@ public class DriveTrain extends Subsystem {
 		mecanum.driveCartesian(OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort), OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort), gyro.getAngle());
 	}
 
-  public void driveStraight(double x, double y, double z){
+  public void drive(double x, double y, double z){
     mecanum.driveCartesian(y, x, z);
   }
 
