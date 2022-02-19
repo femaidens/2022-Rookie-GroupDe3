@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DigitalOutput;
+
 /** Add your docs here. */
 public class RobotMap {
     public static int joyPort = 2; 
@@ -30,5 +32,4 @@ public class RobotMap {
     public static int rightUltra2Port = 34;
     public static int climbMidButtonPort = 35;
     public static int changeBarButtonPort = 36;
-    
 }

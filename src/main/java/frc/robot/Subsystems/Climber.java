@@ -35,6 +35,7 @@ public class Climber extends Subsystem {
   public static double margin = 0.01;
   /* leftUltra and rightUltra values will never be eqaul thus you want a margin to ensure that the values are at least similar*/
   public void driveStraight(double magnitude) { 
+    Ultrasonic.setAutomaticMode(true);
     while (leftUltra.getRangeInches() > rightUltra.getRangeInches() + margin || leftUltra.getRangeInches() > rightUltra.getRangeInches() - margin) {
       Robot.driveTrain.driveStraight(0, magnitude, -0.05);
     }
