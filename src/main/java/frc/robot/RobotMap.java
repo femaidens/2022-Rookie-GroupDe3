@@ -32,4 +32,5 @@ public class RobotMap {
     public static int rightUltra2Port = 34;
     public static int climbMidButtonPort = 35;
     public static int changeBarButtonPort = 36;
+    public static int climbPIDButtonPort = 37;
 }

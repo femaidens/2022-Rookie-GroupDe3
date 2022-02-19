@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ClimbPID extends Command {
+  public static double margin = 0.1;
   private static final double KP = 0.155;
   private static final double KI = 0.0;
   private static final double KD = 0.0;
@@ -23,6 +24,7 @@ public class ClimbPID extends Command {
   static double time = 0.1;
   private static double xSpeed;
   private static double ySpeed; //for kermit, the right motor's the one backwards
+  public static double dist;
 
 
   public ClimbPID(double xs, double ys) {
@@ -31,6 +33,8 @@ public class ClimbPID extends Command {
     requires(Robot.driveTrain);
     xSpeed = xs;
     ySpeed = ys;
+
+
   }
 
   // Called just before this Command runs the first time
@@ -40,8 +44,25 @@ public class ClimbPID extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    while (Robot.climber.leftUltra.getRangeInches() < dist + margin){//ultraspomc < distance + margin && ultraspomc > distance margin{
+      previous_error = current_error;
+      current_error = Robot.climber.leftUltra.getRangeInches();
+      //subtraction -> if 0, the two ultrasons are aligned same
+      integral += (current_error+previous_error)/2*(time);
+      derivative = (current_error-previous_error)/time;
+      adjust = KP*current_error + KI*integral + KD*derivative;
+      if (current_error > min_error){
+        adjust += min_command;
+      }
+      else if (current_error < -min_error){
+        adjust -= min_command;
+      }
+      Robot.driveTrain.driveStraight(xSpeed + adjust*.01, ySpeed - adjust*.01, 0.2);
+    }
+
     previous_error = current_error;
     current_error = Robot.climber.leftUltra.getRangeInches() - Robot.climber.rightUltra.getRangeInches();
+    //subtraction -> if 0, the two ultrasons are aligned same
     integral += (current_error+previous_error)/2*(time);
     derivative = (current_error-previous_error)/time;
     adjust = KP*current_error + KI*integral + KD*derivative;
@@ -57,7 +78,7 @@ public class ClimbPID extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

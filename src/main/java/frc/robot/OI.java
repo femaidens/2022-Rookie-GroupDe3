@@ -3,7 +3,10 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-import edu.wpi.first.wpilibj.buttons.*;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.Commands.ClimbPID;
 import frc.robot.Commands.changeBar;
 import frc.robot.Commands.climbMid;
 import edu.wpi.first.wpilibj.Joystick;
@@ -14,10 +17,12 @@ public class OI {
     public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
     public static Button climbMidButton = new JoystickButton(rightJoy, RobotMap.climbMidButtonPort);
     public static Button changeBarButton = new JoystickButton(rightJoy, RobotMap.changeBarButtonPort);
+    public static Button climbPIDButton = new JoystickButton(rightJoy, RobotMap.climbPIDButtonPort);
 
 
     public void bindButton(){    
         climbMidButton.whenPressed(new climbMid());
         changeBarButton.whenPressed(new changeBar());
+        climbPIDButton.whenPressed(new ClimbPID(0, 0.1));
     }
 }
