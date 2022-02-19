@@ -49,7 +49,8 @@ public class shootPID extends Command {
     else if (current_error < -min_error){
       adjust -= min_command;
     }
-    Robot.drivetrain.drive(xSpeed + adjust*.01, ySpeed - adjust*.01, 0.2);  
+    Robot.drivetrain.drive(xSpeed + adjust*.01, ySpeed - adjust*.01, 0.2); 
+    //QUESTIONABLE, SHOULD ASK. DOES ROBOT MOVE + ALIGN BASED OF LIMELIGHT ERROR
   }
 
   // Make this return true when this Command no longer needs to run execute()
