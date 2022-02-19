@@ -11,4 +11,8 @@ public class RobotMap {
     public static int leftJoyPort = 8;
     public static int rightJoyPort = 9;
     public static int shootPort = 10;
+    public static int rearLeftPort = 11;
+    public static int rearRightPort = 12;
+    public static int frontLeftPort = 13;
+    public static int frontRightPort = 14;
 }
