@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-import frc.robot.Commands.drive;
+import frc.robot.Commands.driveBack;
 import frc.robot.Commands.autoAlign;
 import frc.robot.Commands.shoot;
 import frc.robot.Commands.Intake;
@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutCom extends CommandGroup {
   /** Add your docs here. */
   public AutCom() {
-    addSequential(new drive()); //drive backwards
+    addSequential(new driveBack()); //drive backwards
     addSequential(new autoAlign()); //align 
     addSequential(new shoot()); //shoot
     addSequential(new Intake());
