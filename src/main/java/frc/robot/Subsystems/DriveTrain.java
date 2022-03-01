@@ -122,7 +122,7 @@ public class DriveTrain extends Subsystem {
     //y = OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort);
     //x = OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort);
     //z = OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort);
-		mecanum.driveCartesian(OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort), gyro.getAngle());
+		mecanum.driveCartesian(OI.rightJoy.getRawAxis(2), OI.leftJoy.getRawAxis(0), OI.leftJoy.getRawAxis(1), gyro.getAngle());
 	}
 
   public void driveDistance(double ticks) {
