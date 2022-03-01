@@ -30,7 +30,6 @@ public class DriveTrain extends Subsystem {
 	public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
 	public MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
-
   public static double margin = 0.01;
 
   /*public void turnDegrees(double degrees){
@@ -54,6 +53,10 @@ public class DriveTrain extends Subsystem {
         }
     }
   } */
+
+  public void driveC(double y, double x, double z) {
+    mecanum.driveCartesian(z,x,y);
+  }
   
   public void turnDegrees(double angle){
     if ((angle >= 180 && gyro.getAngle() >= 180) || (angle < 180 && gyro.getAngle() < 180)){
@@ -98,30 +101,29 @@ public class DriveTrain extends Subsystem {
       angle = 360 - angle; // Ex: angle = 359, thus 360 - 359 = 1 deg
       while (360 - gyro.getAngle() != angle) {
         if (360 - gyro.getAngle() > angle) { 
-          mecanum.driveCartesian(0, 0, -0.5);
+          mecanum.driveCartesian(-0.5, 0, 0);
         } else if (360 - gyro.getAngle() < angle) { 
-          mecanum.driveCartesian(0, 0, 0.5);
+          mecanum.driveCartesian(0.5, 0, 0);
         }
       }
     } 
     else { //angle < 180
       while ((gyro.getAngle()) != angle) {
         if (gyro.getAngle() < angle) {
-          mecanum.driveCartesian(0, 0, 0.5);
+          mecanum.driveCartesian(0.5, 0, 0);
         } else if (gyro.getAngle() > angle) {
-          mecanum.driveCartesian(0, 0, -0.5);
+          mecanum.driveCartesian(-0.5, 0, 0);
         }
       }
     }
   }
 
 	public void driveTeleop(){
-		mecanum.driveCartesian(OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort), OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort), gyro.getAngle());
+    //y = OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort);
+    //x = OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort);
+    //z = OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort);
+		mecanum.driveCartesian(OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort), gyro.getAngle());
 	}
-
-  public void driveStraight(double x, double y, double z){
-    mecanum.driveCartesian(y, x, z);
-  }
 
   public void driveDistance(double ticks) {
     double margin = 5;
@@ -129,9 +131,9 @@ public class DriveTrain extends Subsystem {
 
     while (leftEncoder.getPosition() < ticks) {
       if (gyro.getAngle() - originalAngle - margin > 180 || gyro.getAngle() - originalAngle + margin > 180) {
-        mecanum.driveCartesian(0, 0.5, 0.05);
+        mecanum.driveCartesian(0.05, 0.5, 0);
       } else if (gyro.getAngle() < 180 && (gyro.getAngle() - originalAngle - margin > 0 || gyro.getAngle() - originalAngle + margin > 0)) {
-        mecanum.driveCartesian(0, 0.5, -0.05);
+        mecanum.driveCartesian(-0.05, 0.5, 0);
       } else {//above two while loops align robot straight (like done previously for climb)
         mecanum.driveCartesian(0, 0.5, 0); //when all done, move robot along the x-axis according to magnitude
       }
