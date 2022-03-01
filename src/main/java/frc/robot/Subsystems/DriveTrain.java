@@ -8,6 +8,8 @@ import com.revrobotics.RelativeEncoder;
 
 import frc.robot.RobotMap;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -144,6 +146,6 @@ public class DriveTrain extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new driveTeleop());
   }
 }
