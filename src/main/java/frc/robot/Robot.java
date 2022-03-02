@@ -5,15 +5,14 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
-import frc.robot.Subsystems.*;
+
 import frc.robot.Subsystems.DriveTrain;
 import frc.robot.Commands.driveTeleop;
-import frc.robot.Commands.*;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -44,6 +43,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_oi.bindButton();
     System.out.println("init");
+    driveTrain.setDefaultCommand(new driveTeleop());
   }
 
   /**

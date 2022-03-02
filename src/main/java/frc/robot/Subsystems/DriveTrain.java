@@ -8,14 +8,12 @@ import com.revrobotics.RelativeEncoder;
 
 import frc.robot.RobotMap;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.OI;
+import frc.robot.Commands.driveTeleop;
 
 /** Add your docs here. */
 public class DriveTrain extends Subsystem {
@@ -34,71 +32,10 @@ public class DriveTrain extends Subsystem {
 	public MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
   public static double margin = 0.01;
 
-  /*public void turnDegrees(double degrees){
-    degrees -= gyro.getAngle(); 
-    //ex: if robot is already at a certain degree (told by getGyro), then subtracting -> degrees that robot will need to turn
-    if (degrees > 360) {
-      degrees -= 360;
-    } else if (degrees < 0) {
-      degrees += 360;
-    }
-
-    if (degrees <= 180 && degrees >=0) { //robot constantly turns to the right
-      while (gyro.getAngle() < degrees) {
-        mecanum.driveCartesian(0, 0, 0.5);
-      }
-    } else if (degrees > 180) {  
-        mecanum.driveCartesian(0, 0, -0.5);
-        while (gyro.getAngle() > degrees) { 
-        //robot constantly turns to the left; say wanted degrees is 275, thus robot turns left until its gyroPos is =/< 275
-          mecanum.driveCartesian(0, 0, -0.5);
-        }
-    }
-  } */
-
   public void driveC(double y, double x, double z) {
     mecanum.driveCartesian(z,x,y);
   }
-  
-  public void turnDegrees(double angle){
-    if ((angle >= 180 && gyro.getAngle() >= 180) || (angle < 180 && gyro.getAngle() < 180)){
-      //if angle on same side of circle as gyro
-      while (gyro.getAngle() > angle){
-        mecanum.driveCartesian(0.5, 0, -0.5);
-      }
-      while(gyro.getAngle() < angle){
-        mecanum.driveCartesian(0.5, 0, 0.5);
-      }
-    }
-    else if (angle > 180 && gyro.getAngle() <= 180){ //if angle on left side and gyro on right side
-      if (gyro.getAngle() + (360-angle) < angle - gyro.getAngle()){ 
-        //gyro.getAngle() + (360-angle) = outside angle; angle - gyro.getAngle() = inside angle
-        while (gyro.getAngle() + 360 > angle){
-          mecanum.driveCartesian(0.5, 0, -0.5);
-        }
-      }
-      else if (gyro.getAngle() + (360-angle) > angle - gyro.getAngle()){ 
-        while (gyro.getAngle() < angle){
-          mecanum.driveCartesian(0.5, 0, 0.5);
-        }
-      }
-    }
-    else if (angle < 180 && gyro.getAngle() > 180){ //if angle on right side of circle and gyro on left side of circle
-      if (gyro.getAngle() + (360-angle) < gyro.getAngle() - angle){ //gyro.getAngle() - angle = inside angle
-        while(gyro.getAngle() < angle + 360){
-          mecanum.driveCartesian(0.5, 0, -0.5);
-        }
-      }
-      if (gyro.getAngle() + (360-angle) > gyro.getAngle() - angle){ //robot turns right to hit angle 
-        while(gyro.getAngle() > angle){
-          mecanum.driveCartesian(0.5, 0, 0.5);
-        }
-      }
-    }
-
-  }
-
-  public void turnDegrees2(double angle) { //ISSUE: gyro = 200 ddeg, wanted angle = 359 deg
+  public void turnDegrees(double angle) { //ISSUE: gyro = 200 ddeg, wanted angle = 359 deg
     if (angle > 180) { //ex: angle = 260; gyro angle = 60
       angle = 360 - angle; // Ex: angle = 359, thus 360 - 359 = 1 deg
       while (360 - gyro.getAngle() != angle) {
@@ -120,7 +57,7 @@ public class DriveTrain extends Subsystem {
     }
   }
 
-	public void driveTeleop(){
+	public void DriveTeleop(){
     //y = OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort);
     //x = OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort);
     //z = OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort);
@@ -141,7 +78,6 @@ public class DriveTrain extends Subsystem {
       }
     }
   }
-
 
   @Override
   public void initDefaultCommand() {
