@@ -58,10 +58,10 @@ public class DriveTrain extends Subsystem {
   }
 
 	public void DriveTeleop(){
-    //y = OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort);
-    //x = OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort);
-    //z = OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort);
-		mecanum.driveCartesian(OI.rightJoy.getRawAxis(2), OI.leftJoy.getRawAxis(0), OI.leftJoy.getRawAxis(1), gyro.getAngle());
+    double y = OI.rightJoy.getRawAxis(1);
+    double x = OI.rightJoy.getRawAxis(0);
+    double z = OI.leftJoy.getRawAxis(2);
+		mecanum.driveCartesian(z, x, y, gyro.getAngle());
 	}
 
   public void driveDistance(double ticks) {
