@@ -22,10 +22,11 @@ public class DriveTrain extends Subsystem {
 	public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
 	public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
 	public MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
+  public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
   public void drive(double x, double y, double z){
     //In other branches, may be named misleading name driveStraight; actually supposed to be drive.
-    mecanum.driveCartesian(y, x, z);
+    mecanum.driveCartesian(z, x, y, gyro.getAngle());
   }
 
   @Override
