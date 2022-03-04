@@ -5,10 +5,14 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.Commands.shootPID;
 
 /** Add your docs here. */
 public class OI {
     public static Joystick leftJoy = new Joystick(RobotMap.leftJoyPort);
     public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
-
+    public static Button PIDbutton = new JoystickButton(leftJoy, RobotMap.buttonPort);
+    public void bindButton(){
+        PIDbutton.whenPressed(new shootPID(0.1));
+    }
 }

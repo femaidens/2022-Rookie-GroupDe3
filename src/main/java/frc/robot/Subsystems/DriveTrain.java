@@ -26,7 +26,7 @@ public class DriveTrain extends Subsystem {
 
   public void drive(double x, double y, double z){
     //In other branches, may be named misleading name driveStraight; actually supposed to be drive.
-    mecanum.driveCartesian(z, x, y, gyro.getAngle());
+    mecanum.driveCartesian(z, x, y);
   }
 
   @Override
