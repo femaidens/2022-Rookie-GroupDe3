@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
     drivetrain = new DriveTrain();
     limelight = new Limelight();
     m_oi = new OI();
+    m_oi.bindButton();
     System.out.println("init");
   }
 

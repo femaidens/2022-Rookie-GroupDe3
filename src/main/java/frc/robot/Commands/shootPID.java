@@ -20,15 +20,13 @@ public class shootPID extends Command {
   static double derivative = 0.0;
   static double adjust = 0.0;
   static double time = 0.1;
-  private static double xSpeed;
-  private static double ySpeed; //for kermit, the right motor's the one backwards
+  private static double zSpeed;
 
-  public shootPID(double xs, double ys) {
+  public shootPID(double zs) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.drivetrain);
-    xSpeed = xs;
-    ySpeed = ys;
+    zSpeed = zs;
   }
 
   // Called just before this Command runs the first time
@@ -49,7 +47,7 @@ public class shootPID extends Command {
     else if (current_error < -min_error){
       adjust -= min_command;
     }
-    Robot.drivetrain.drive(xSpeed + adjust*.01, ySpeed - adjust*.01, 0.2); 
+    Robot.drivetrain.drive(0., 0., zSpeed - adjust*0.1); 
     //QUESTIONABLE, SHOULD ASK. DOES ROBOT MOVE + ALIGN BASED OF LIMELIGHT ERROR
   }
 
