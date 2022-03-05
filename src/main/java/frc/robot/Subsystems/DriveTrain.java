@@ -62,6 +62,11 @@ public class DriveTrain extends Subsystem {
     double x = OI.leftJoy.getRawAxis(0);
     double z = OI.rightJoy.getRawAxis(0);
 		mecanum.driveCartesian(z, x, y, 0);
+    System.out.println("rLvolt: " + rearLeft.getBusVoltage());
+    System.out.println("rRvolt: " + rearRight.getBusVoltage());
+    System.out.println("fLvolt: " + frontLeft.getBusVoltage());
+    System.out.println("fRvolt: " + frontRight.getBusVoltage());
+
 	}
 
   public void driveDistance(double ticks) {
