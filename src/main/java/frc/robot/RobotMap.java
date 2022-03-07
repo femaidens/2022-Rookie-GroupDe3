@@ -13,4 +13,5 @@ public class RobotMap {
     public static int gyroPort = 15;
     public static int leftJoyPort = 16;
     public static int rightJoyPort = 17;
+    public static int buttonPort = 18;
 }
