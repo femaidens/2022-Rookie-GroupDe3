@@ -9,10 +9,12 @@ import frc.robot.Commands.shootPID;
 
 /** Add your docs here. */
 public class OI {
-    public static Joystick leftJoy = new Joystick(RobotMap.leftJoyPort);
-    public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
-    public static Button PIDbutton = new JoystickButton(leftJoy, RobotMap.buttonPort);
+    // public static Joystick leftJoy = new Joystick(RobotMap.leftJoyPort);
+    //public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
+    public static Joystick joy = new Joystick(RobotMap.joyPort);
+
+    public static Button PIDbutton = new JoystickButton(joy, RobotMap.buttonPort);
     public void bindButton(){
-        PIDbutton.whenPressed(new shootPID(0.1));
+        PIDbutton.whileHeld(new shootPID(0.01));
     }
 }

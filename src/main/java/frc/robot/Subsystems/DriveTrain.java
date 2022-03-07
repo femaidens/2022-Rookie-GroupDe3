@@ -36,7 +36,7 @@ public class DriveTrain extends Subsystem {
     mecanum.driveCartesian(z,x,y);
   }
   public void turnDegrees(double angle) { //ISSUE: gyro = 200 ddeg, wanted angle = 359 deg
-    if (angle > 180) { //ex: angle = 260; gyro angle = 60
+    /*if (angle > 180) { //ex: angle = 260; gyro angle = 60
       angle = 360 - angle; // Ex: angle = 359, thus 360 - 359 = 1 deg
       while (360 - gyro.getAngle() != angle) {
         if (360 - gyro.getAngle() > angle) { 
@@ -54,7 +54,7 @@ public class DriveTrain extends Subsystem {
           mecanum.driveCartesian(-0.5, 0, 0);
         }
       }
-    }
+    }*/
   }
 
 	public void DriveTeleop(){
@@ -62,20 +62,20 @@ public class DriveTrain extends Subsystem {
     rearLeft.setVoltage(outputVolts);
     frontRight.setVoltage(outputVolts);
     frontLeft.setVoltage(outputVolts); */
-    double y = -OI.leftJoy.getRawAxis(1);
-    double x = OI.leftJoy.getRawAxis(0);
-    double z = OI.rightJoy.getRawAxis(0);
-		mecanum.driveCartesian(z, x, y, 0);
+    //double y = -OI.leftJoy.getRawAxis(1);
+    //double x = OI.leftJoy.getRawAxis(0);
+    //double z = OI.rightJoy.getRawAxis(0);
+		//mecanum.driveCartesian(z, x, y, 0);
     //
-    System.out.println("rLvolt: " + rearLeft.getBusVoltage());
+   /*System.out.println("rLvolt: " + rearLeft.getBusVoltage());
     System.out.println("rRvolt: " + rearRight.getBusVoltage());
     System.out.println("fLvolt: " + frontLeft.getBusVoltage());
     System.out.println("fRvolt: " + frontRight.getBusVoltage());
-
+*/
 	}
 
   public void driveDistance(double ticks) {
-    double margin = 5;
+    /*double margin = 5;
     double originalAngle = gyro.getAngle(); 
 
     while (leftEncoder.getPosition() < ticks) {
@@ -86,12 +86,12 @@ public class DriveTrain extends Subsystem {
       } else {//above two while loops align robot straight (like done previously for climb)
         mecanum.driveCartesian(0, 0.5, 0); //when all done, move robot along the x-axis according to magnitude
       }
-    }
+    }*/
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new shootPID(0.1));
+    //setDefaultCommand(new shootPID(0.1));
   }
 }
