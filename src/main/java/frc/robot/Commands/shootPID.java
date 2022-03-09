@@ -51,7 +51,7 @@ public class shootPID extends Command {
       adjust -= min_command;
     }
     */
-    Robot.drivetrain.driveC(0, 0, zSpeed - adjust*0.01); 
+    Robot.drivetrain.driveC(0, 0, zSpeed + adjust); 
     System.out.println("Emotional damage");
     //QUESTIONABLE, SHOULD ASK. DOES ROBOT MOVE + ALIGN BASED OF LIMELIGHT ERROR 
   }
