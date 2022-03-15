@@ -4,12 +4,15 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.*;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.Commands.testEncoder;
 import frc.robot.*;
 
 /** Add your docs here. */
 public class OI {
+    Joystick joy = new Joystick(RobotMap.joyPort);
+    Button test = new JoystickButton(joy, 1);
     public void bindButton(){
+        test.whenPressed(new testEncoder());
     }
 } //TEST!
