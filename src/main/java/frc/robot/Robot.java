@@ -9,6 +9,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+import frc.robot.Subsystems.Drivetrain;
+import frc.robot.Subsystems.Limelight;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,6 +25,8 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  public static Drivetrain drivetrain;
+  public static Limelight limelight;
   public static OI m_oi;
   
 
@@ -34,6 +40,8 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    drivetrain = new Drivetrain();
+    limelight = new Limelight();
     m_oi = new OI();
     m_oi.bindButton();
     System.out.println("init");
