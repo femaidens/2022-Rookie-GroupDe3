@@ -17,10 +17,10 @@ public class Drivetrain extends Subsystem {
   public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
   public static CANSparkMax backRight = new CANSparkMax(RobotMap.backRightPort, MotorType.kBrushless);
   public void drive(double leftSpeed, double rightSpeed){
-    frontLeft.set(0.25);
-    backLeft.set(0.25);
-    frontRight.set(-0.25);
-    backRight.set(-0.25);
+    frontLeft.set(leftSpeed);
+    backLeft.set(leftSpeed);
+    frontRight.set(rightSpeed);
+    backRight.set(rightSpeed);
 
   }
   @Override
