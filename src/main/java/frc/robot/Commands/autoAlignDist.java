@@ -41,7 +41,6 @@ public class autoAlignDist extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (!Limelight.objectSighted()) return;
     previous_error = current_error;
     current_error = Robot.limelight.getTy();
     integral += (current_error+previous_error)/2*(time);

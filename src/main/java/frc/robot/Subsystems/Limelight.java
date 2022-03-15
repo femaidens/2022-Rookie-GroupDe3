@@ -19,12 +19,6 @@ public class Limelight extends Subsystem {
   public static NetworkTableEntry ts = table.getEntry("ts");
   public static NetworkTableEntry ty = table.getEntry("ty");
 
-  public static boolean objectSighted(){
-    if (tv.getDouble(0.0) == 1){
-      return true;
-    }
-    return false;
-  }
   public double getTy() {
     return ty.getDouble(0);
   }
