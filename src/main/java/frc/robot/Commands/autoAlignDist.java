@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Commands;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Limelight;
@@ -32,6 +32,14 @@ public class autoAlignDist extends Command {
     requires(Robot.drivetrain);
     leftSpeed = left;
     rightSpeed = right;
+    SmartDashboard.putNumber("P", 0.000700);
+    SmartDashboard.putNumber("I", 0.000001);
+    SmartDashboard.putNumber("D", 0.01);
+    SmartDashboard.putNumber("IZone", 100.00);
+    SmartDashboard.putNumber("FF", 0.000250);
+    SmartDashboard.putNumber("OutputRangeL", 0.0);
+    SmartDashboard.putNumber("OutputRangeH", 1.0);
+
   }
 
   // Called just before this Command runs the first time
@@ -60,7 +68,9 @@ public class autoAlignDist extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if (Robot.limelight.getDistance() < 41.5 || Robot.limelight.getDistance() > 40.5) 
+      return true;
+    return false;    
   }
 
   // Called once after isFinished returns true

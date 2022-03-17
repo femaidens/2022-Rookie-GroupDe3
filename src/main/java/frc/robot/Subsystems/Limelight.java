@@ -18,7 +18,17 @@ public class Limelight extends Subsystem {
   public static NetworkTableEntry ta = table.getEntry("ta");
   public static NetworkTableEntry ts = table.getEntry("ts");
   public static NetworkTableEntry ty = table.getEntry("ty");
-
+  
+  public double getDistance(){
+    //this = from a formula on limelight docs
+    //limelightHeightInches = 27.5 in
+    //goaldistfromwall = 41 in
+    double limelightMountAngleDegrees = 60.0;
+    double goalHeightInches = 41.0;
+    double angleToGoalDegrees = limelightMountAngleDegrees + getTy();
+    double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
+    return (goalHeightInches - 27.5)/Math.tan(angleToGoalRadians); 
+  }
   public double getTy() {
     return ty.getDouble(0);
   }
