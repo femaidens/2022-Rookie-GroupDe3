@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.Commands.ClimbPID;
 import frc.robot.Commands.changeBar;
-import frc.robot.Commands.climbMid;
 import edu.wpi.first.wpilibj.Joystick;
 
 /** Add your docs here. */
@@ -21,7 +20,6 @@ public class OI {
 
 
     public void bindButton(){    
-        climbMidButton.whenPressed(new climbMid());
         changeBarButton.whenPressed(new changeBar());
         climbPIDButton.whenPressed(new ClimbPID(0, 0.1));
     }
