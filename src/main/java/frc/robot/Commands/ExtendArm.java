@@ -3,14 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Commands;
-import frc.robot.Subsystems.IntakeBall;
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 import frc.robot.*;
-import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Subsystems.IntakeBall;
 
-
-public class Intake extends Command {
+public class ExtendArm extends Command {
   private static final double KP = 0.155;
   private static final double KI = 0.0;
   private static final double KD = 0.0;
@@ -23,7 +20,8 @@ public class Intake extends Command {
   static double derivative = 0.0;
   static double adjust = 0.0;
   static double time = 0.1;
-  public Intake() {
+  static double ticks = 10; //arbitrary # of ticks for 37 degs
+  public ExtendArm() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.intake);
@@ -31,15 +29,13 @@ public class Intake extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
-    Robot.intake.retract();
-  }
+  protected void initialize() {}
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     previous_error = current_error;
-    current_error = IntakeBall.encoder.getDistance();
+    current_error = ticks - IntakeBall.encoder.getDistance();
     derivative = (current_error-previous_error)/time;
     adjust = KP*current_error + KI*integral + KD*derivative;
     if (current_error > min_error){
@@ -48,16 +44,15 @@ public class Intake extends Command {
     else if (current_error < -min_error){
       adjust -= min_command;
     }
-    Robot.intake.spinWheel(0.7);
-    Robot.intake.extend();
+    if (adjust > 0.25) 
+      Robot.intake.extend();
+    else if (adjust < -0.25) 
+      Robot.intake.retract();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  //10.1 + 9.9 = arbritrary #s
   protected boolean isFinished() {
-    if (IntakeBall.encoder.getDistance() <= 10.1 && IntakeBall.encoder.getDistance() >= 9.9)
-      return true;
     return false;
   }
 
@@ -68,9 +63,5 @@ public class Intake extends Command {
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
-    IntakeBall.motor1.set(0.0);
-    IntakeBall.motor2.set(0.0);
-    IntakeBall.encoder.reset();
-  }
+  protected void interrupted() {}
 }

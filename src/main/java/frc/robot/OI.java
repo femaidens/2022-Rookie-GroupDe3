@@ -6,13 +6,19 @@ package frc.robot;
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Commands.Intake;
+import frc.robot.Commands.ExtendArm;
+import frc.robot.Commands.RetractArm;
+import frc.robot.Commands.SpinWheel;
 
 /** Add your docs here. */
 public class OI {
     public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
     public static JoystickButton intakeButton = new JoystickButton(rightJoy, RobotMap.intakeButtonPort);
+    public static JoystickButton extendButton = new JoystickButton(rightJoy, RobotMap.intakeButtonPort);
+    public static JoystickButton retractButton = new JoystickButton(rightJoy, RobotMap.intakeButtonPort);
     public void bindButton(){
-        intakeButton.whileHeld(new Intake());
+        intakeButton.whenPressed(new SpinWheel());
+        extendButton.whenPressed(new ExtendArm());
+        retractButton.whenPressed(new RetractArm());
     }
 }
