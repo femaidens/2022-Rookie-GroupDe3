@@ -51,34 +51,34 @@ public class Climber extends Subsystem {
       driveStraight(0.5); //move robot past the mid rung
     }
     while(leftArmEncoder.getPosition() < A){ //extending arms up above bar AFTER ALIGNED ROBOT
-      leftArmMotor.set(0.5);
-      rightArmMotor.set(0.5);
+      leftArmMotor.set(1.0);
+      rightArmMotor.set(1.0);
     }
     while (leftUltra.getRangeInches() < 70 && rightUltra.getRangeInches() < 70) { //move robot forward until hits bar NOTE: what's being compared = distance from wall to bar
       driveStraight(-0.5);
     }
     while(leftArmEncoder.getPosition() > B){ //retract big arms that will then also hook small arms 
-      leftArmMotor.set(-0.5); 
-      rightArmMotor.set(-0.5);
+      leftArmMotor.set(-1); 
+      rightArmMotor.set(-1);
     }
   }
 
   public void changeBar(){
     while(leftArmEncoder.getPosition() < C){ //vertically extending 2 big robot arms slight a bit to unhook while the small arms stayed latched
-      leftArmMotor.set(0.5);
-      rightArmMotor.set(0.5);
+      leftArmMotor.set(1);
+      rightArmMotor.set(1);
     }
     leftArmPis.set(DoubleSolenoid.Value.kForward);  //tilt big arm foward
     rightArmPis.set(DoubleSolenoid.Value.kForward);
     while(leftArmEncoder.getPosition() < A){ //extend behind high bar 
-      leftArmMotor.set(0.5);
-      rightArmMotor.set(0.5);
+      leftArmMotor.set(1);
+      rightArmMotor.set(1);
     }
     leftArmPis.set(DoubleSolenoid.Value.kReverse); //retracts til big arms bump to the rung
     rightArmPis.set(DoubleSolenoid.Value.kReverse);
     while(leftArmEncoder.getPosition() > B){ //hook four arms onto some higher bar 
-      leftArmMotor.set(-0.5);
-      rightArmMotor.set(-0.5);
+      leftArmMotor.set(-1);
+      rightArmMotor.set(-1);
     }
   }
 
