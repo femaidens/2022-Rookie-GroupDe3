@@ -49,12 +49,15 @@ public class Intake extends Command {
       adjust -= min_command;
     }
     Robot.intake.spinWheel(0.7);
-    Robot.intake.retract();
+    Robot.intake.extend();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
+  //10.1 + 9.9 = arbritrary #s
   protected boolean isFinished() {
+    if (IntakeBall.encoder.getDistance() <= 10.1 && IntakeBall.encoder.getDistance() >= 9.9)
+      return true;
     return false;
   }
 
