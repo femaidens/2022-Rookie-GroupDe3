@@ -21,11 +21,11 @@ public class IntakeBall extends Subsystem {
 //motor2 = base ; spin wheels; motor1 = -exten/retrac
 
   public void retract(){
-    motor1.set(-0.2);
+    motor1.set(-1);
   }
 
   public void extend(){
-    motor1.set(0.2);
+    motor1.set(1);
     
   }
   public void spinWheel(double spd){
