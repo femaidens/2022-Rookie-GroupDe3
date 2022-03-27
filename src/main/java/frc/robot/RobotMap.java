@@ -39,7 +39,7 @@ public class RobotMap {
     public static int rightUltra1Port = 33;
     public static int rightUltra2Port = 34;
 
-    public static int climbPIDButtonPort = 37;
+    public static int climbPIDButtonPort = 4;
 
     public static int armExtendButtonPort = 2;
     public static int armRetractButtonPort = 1;
