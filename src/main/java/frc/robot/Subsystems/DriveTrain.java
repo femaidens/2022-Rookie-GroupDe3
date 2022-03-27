@@ -27,7 +27,7 @@ public class DriveTrain extends Subsystem {
 
 
 	public void driveTeleop(){
-		mecanum.driveCartesian(OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyXPort), OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort), gyro.getAngle());
+		mecanum.driveCartesian(OI.leftJoy.getRawAxis(RobotMap.leftJoyYPort), OI.leftJoy.getRawAxis(RobotMap.leftJoyXPort), OI.rightJoy.getRawAxis(RobotMap.rightJoyYPort), gyro.getAngle());
 	}
 
   public void drive(double x, double y, double z){
