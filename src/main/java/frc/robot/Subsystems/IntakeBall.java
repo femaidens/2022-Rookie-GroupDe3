@@ -27,7 +27,7 @@ public class IntakeBall extends Subsystem {
   }
 
   public void extend(){
-    if (OI.joy.getRawAxis(2) > 0){
+    if (OI.joy.getRawAxis(2) > 0.2){
       motor1.set(1);
     }
   }
