@@ -4,7 +4,6 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.*;
-import frc.robot.Commands.shoot2;
 import frc.robot.Commands.reset;
 import edu.wpi.first.wpilibj.Joystick;
 
