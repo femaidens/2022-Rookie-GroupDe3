@@ -6,12 +6,10 @@ package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-
-public class changeBar extends Command {
-  public changeBar() {
+public class armExtend extends Command {
+  public armExtend() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.climber);
   }
 
   // Called just before this Command runs the first time
@@ -21,13 +19,13 @@ public class changeBar extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.changeBar();
+    Robot.climber.armExt();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

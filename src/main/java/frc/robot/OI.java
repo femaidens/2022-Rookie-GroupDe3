@@ -6,21 +6,33 @@ package frc.robot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Commands.ClimbPID;
-import frc.robot.Commands.changeBar;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.Commands.ClimbPID;
+import frc.robot.Commands.armExtend;
+import frc.robot.Commands.armRetract;
+import frc.robot.Commands.pistonIn;
+import frc.robot.Commands.pistonOut;
+
 
 /** Add your docs here. */
 public class OI {
+    public static Joystick joy =  new Joystick(RobotMap.joyPort);
     public static Joystick leftJoy = new Joystick(RobotMap.leftJoyPort);
     public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
-    public static Button climbMidButton = new JoystickButton(rightJoy, RobotMap.climbMidButtonPort);
-    public static Button changeBarButton = new JoystickButton(rightJoy, RobotMap.changeBarButtonPort);
-    public static Button climbPIDButton = new JoystickButton(rightJoy, RobotMap.climbPIDButtonPort);
+
+    public static JoystickButton climbPIDButton = new JoystickButton(leftJoy, RobotMap.climbPIDButtonPort);
+    public static JoystickButton armExtendButton = new JoystickButton(joy, RobotMap.armExtendButtonPort);
+    public static JoystickButton armRetractButton = new JoystickButton(joy, RobotMap.armRetractButtonPort);
+    public static JoystickButton pistonInButton = new JoystickButton(joy, RobotMap.pistonInButtonPort);
+    public static JoystickButton pistonOutButton = new JoystickButton(joy, RobotMap.pistonOutButtonPort);
+
 
 
     public void bindButton(){    
-        changeBarButton.whenPressed(new changeBar());
+        armExtendButton.whenPressed(new armExtend());
+        armRetractButton.whenPressed(new armRetract());
+        pistonInButton.whenPressed(new pistonIn());
+        pistonOutButton.whenPressed(new pistonOut());
         climbPIDButton.whenPressed(new ClimbPID(0, 0.1));
     }
 }

@@ -8,7 +8,7 @@ import frc.robot.Subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ClimbPID extends Command {
+public class ClimbPID extends Command { //not needed if driving in from side 
   public static double margin = 0.1;
   private static final double KP = 0.155;
   private static final double KI = 0.0;
@@ -44,25 +44,21 @@ public class ClimbPID extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      if (count < 1){
-        Robot.climber.midBar();
-        count++;
-      }
-      previous_error = current_error;
-      current_error = Climber.leftUltra.getRangeInches() - Climber.rightUltra.getRangeInches();
-      //subtraction -> if 0, the two ultrasons are aligned same
-      integral += (current_error+previous_error)/2*(time);
-      derivative = (current_error-previous_error)/time;
-      adjust = KP*current_error + KI*integral + KD*derivative;
-      if (current_error > min_error){
-        adjust += min_command;
-      }
-      else if (current_error < -min_error){
-        adjust -= min_command;
-      }
-      //assume robot is already in wanted distance from the wall, the below 
-      //statement then aligns the robot (i.r. using PID) straight without moving foward
-      Robot.driveTrain.drive(0, 0, 0.1 + adjust * 0.01);
+    previous_error = current_error;
+    current_error = Climber.leftUltra.getRangeInches() - Climber.rightUltra.getRangeInches();
+    //subtraction -> if 0, the two ultrasons are aligned same
+    integral += (current_error+previous_error)/2*(time);
+    derivative = (current_error-previous_error)/time;
+    adjust = KP*current_error + KI*integral + KD*derivative;
+    if (current_error > min_error){
+      adjust += min_command;
+    }
+    else if (current_error < -min_error){
+      adjust -= min_command;
+    }
+    //assume robot is already in wanted distance from the wall, the below 
+    //statement then aligns the robot (i.r. using PID) straight without moving foward
+    Robot.driveTrain.drive(0, 0, 0.1 + adjust * 0.01);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -73,7 +69,9 @@ public class ClimbPID extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    end();
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run

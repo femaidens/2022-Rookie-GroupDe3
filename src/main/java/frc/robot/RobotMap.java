@@ -8,17 +8,17 @@ import edu.wpi.first.wpilibj.DigitalOutput;
 
 /** Add your docs here. */
 public class RobotMap {
-    public static int joyPort = 2; //change
+    public static int joyPort = 2; 
 
-    public static int frontLeftPort = 1;
-    public static int frontRightPort = 2;
+    public static int frontLeftPort = 1;  
+    public static int frontRightPort = 2; 
     public static int rearLeftPort = 9;
     public static int rearRightPort = 6;
 
-    public static int gyroPort = 7; //change
+    public static int gyroPort = 7; 
 
-    public static int leftJoyPort = 8; //change
-    public static int rightJoyPort = 9; //change
+    public static int leftJoyPort = 8; 
+    public static int rightJoyPort = 9; 
 
     public static int rightJoyYPort = 11;
     public static int rightJoyXPort = 12;
@@ -39,7 +39,11 @@ public class RobotMap {
     public static int rightUltra1Port = 33;
     public static int rightUltra2Port = 34;
 
-    public static int climbMidButtonPort = 35;
-    public static int changeBarButtonPort = 36;
     public static int climbPIDButtonPort = 37;
+
+    public static int armExtendButtonPort = 2;
+    public static int armRetractButtonPort = 1;
+    public static int pistonInButtonPort = 3;
+    public static int pistonOutButtonPort = 4;
+
 }
