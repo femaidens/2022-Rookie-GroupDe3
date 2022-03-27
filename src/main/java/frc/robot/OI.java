@@ -10,12 +10,9 @@ import edu.wpi.first.wpilibj.Joystick;
 
 /** Add your docs here. */
 public class OI {
-    public static Joystick leftJoy = new Joystick(RobotMap.leftJoyPort);
-    public static Joystick rightJoy = new Joystick(RobotMap.rightJoyPort);
-    public static Button shoot2 = new JoystickButton(rightJoy, RobotMap.shoot2Port);
+    public static Joystick joy = new Joystick(RobotMap.joyPort);
+    public static JoystickButton reloadButton = new JoystickButton(joy, RobotMap.reloadButtonPort);
     public void bindButton(){
-        shoot2.toggleWhenPressed(new shoot2());
-        shoot2.toggleWhenPressed(new reset());
-        
+        reloadButton.whenPressed(new reset());
     }
 }

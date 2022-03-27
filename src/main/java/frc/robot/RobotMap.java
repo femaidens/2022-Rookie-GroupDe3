@@ -6,11 +6,14 @@ package frc.robot;
 
 /** Add your docs here. */
 public class RobotMap {
-    public static int leftJoyPort = 8;
-    public static int rightJoyPort = 9;
+    public static int joyPort = 1; 
+
     public static int Shooter2MotorPort = 20;
+
     public static int shooterPisForwardPort = 21;
     public static int shooterPisBackwardPort = 22;
+
     public static int shooter2EncoderPort = 23;
-    public static int shoot2Port = 24;
+    
+    public static int reloadButtonPort = 7;
 }

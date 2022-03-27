@@ -8,7 +8,7 @@ import frc.robot.Robot;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import frc.robot.OI;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -21,8 +21,11 @@ public class Shooter2 extends Subsystem {
   public static CANSparkMax motor = new CANSparkMax(RobotMap.Shooter2MotorPort, MotorType.kBrushless);
   public static DoubleSolenoid shooterPis = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPisForwardPort, RobotMap.shooterPisBackwardPort);
   public static DutyCycleEncoder encoder = new DutyCycleEncoder(RobotMap.shooter2EncoderPort);
+  
   public void shoot(){
-    shooterPis.set(DoubleSolenoid.Value.kForward);
+    if (OI.joy.getRawAxis(3) > 0.2){
+      shooterPis.set(DoubleSolenoid.Value.kForward);
+    }
   }
   public void spinMotor(){
     int ticks = 25; //until the bar/base gets latched in; encoder counts how much pulley moves
