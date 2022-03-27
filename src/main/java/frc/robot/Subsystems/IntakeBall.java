@@ -6,6 +6,8 @@ package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.OI;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -25,8 +27,9 @@ public class IntakeBall extends Subsystem {
   }
 
   public void extend(){
-    motor1.set(1);
-    
+    if (OI.joy.getRawAxis(2) > 0){
+      motor1.set(1);
+    }
   }
   public void spinWheel(double spd){
     motor2.set(spd);
