@@ -69,7 +69,7 @@ public class DriveTrain extends Subsystem {
 
 	}
 
-  public void driveDistance(double ticks) {
+  /*public void driveDistance(double ticks) {
     double margin = 5;
     double originalAngle = gyro.getAngle(); 
 
@@ -82,6 +82,10 @@ public class DriveTrain extends Subsystem {
         mecanum.driveCartesian(0, 0.5, 0); //when all done, move robot along the x-axis according to magnitude
       }
     }
+  } */
+
+  public void gyroRes(){
+    gyro.reset();
   }
 
   @Override

@@ -5,13 +5,12 @@
 package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.Subsystems.*;
 
-public class driveTeleop extends Command {
-  public driveTeleop() {
+public class gyroReset extends Command {
+  public gyroReset() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.driveTrain);
   }
 
   // Called just before this Command runs the first time
@@ -21,7 +20,7 @@ public class driveTeleop extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.DriveTeleop();
+    DriveTrain.gyro.reset();
   }
 
   // Make this return true when this Command no longer needs to run execute()
