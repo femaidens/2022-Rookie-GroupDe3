@@ -8,7 +8,7 @@ package frc.robot;
 public class RobotMap {
     public static int leftJoyPort = 8;
     public static int intakeMotorPort = 15;
-    public static int intakeMotor2Port = 16;
+    public static int intakeMotor2Port = 4; //spinning motor
     public static int encoderPort = 36;
     public static int joyPort = 10; //unknown
 }

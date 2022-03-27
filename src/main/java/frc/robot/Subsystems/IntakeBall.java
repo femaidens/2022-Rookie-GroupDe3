@@ -17,8 +17,8 @@ import frc.robot.RobotMap;
 public class IntakeBall extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static CANSparkMax motor1 = new CANSparkMax(RobotMap.intakeMotorPort, MotorType.kBrushless);
-  public static CANSparkMax motor2 = new CANSparkMax(RobotMap.intakeMotor2Port, MotorType.kBrushless);
+  public static CANSparkMax motor1 = new CANSparkMax(RobotMap.intakeMotorPort, MotorType.kBrushless); 
+  public static CANSparkMax motor2 = new CANSparkMax(RobotMap.intakeMotor2Port, MotorType.kBrushless); //spinning wheel motor
   public static DutyCycleEncoder encoder =  new DutyCycleEncoder(RobotMap.encoderPort);
 //motor2 = base ; spin wheels; motor1 = -exten/retrac
 
