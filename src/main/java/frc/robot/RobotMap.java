@@ -13,7 +13,7 @@ public class RobotMap {
     public static int shooterPisForwardPort = 21;
     public static int shooterPisBackwardPort = 22;
 
-    public static int shooter2EncoderPort = 23;
+    //public static int shooter2EncoderPort = 23;
     
     public static int reloadButtonPort = 7;
 }

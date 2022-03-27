@@ -6,6 +6,7 @@ package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Subsystems.Shooter2;
 
 public class shoot2 extends Command {
   public shoot2() {
@@ -16,11 +17,14 @@ public class shoot2 extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    Shooter2.encoder.setPosition(0);
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.shooter2.alignShooter();
     Robot.shooter2.shoot();
   }
 

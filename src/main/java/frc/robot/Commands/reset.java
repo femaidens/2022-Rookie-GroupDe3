@@ -18,13 +18,12 @@ public class reset extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.shooter2.reset();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shooter2.spinMotor();
+    Robot.shooter2.reset();
   }
 
   // Make this return true when this Command no longer needs to run execute()
