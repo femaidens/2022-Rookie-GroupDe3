@@ -7,6 +7,8 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.Subsystems.Limelight;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
+
 
 public class shootPID extends Command {
   private static final double KP = .1;
@@ -70,6 +72,6 @@ public class shootPID extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.drivetrain.driveC(0.0, 0.0, 0.0);
+    end();
   }
 }
