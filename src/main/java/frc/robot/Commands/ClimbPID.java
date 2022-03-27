@@ -79,6 +79,6 @@ public class ClimbPID extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.driveTrain.drive(0.0, 0.0, 0.0);
+    end();
   }
 }
