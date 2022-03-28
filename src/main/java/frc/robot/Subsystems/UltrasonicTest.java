@@ -6,6 +6,7 @@ package frc.robot.Subsystems;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Commands.*;
 
 /** Add your docs here. */
 public class UltrasonicTest extends Subsystem {
@@ -14,12 +15,12 @@ public class UltrasonicTest extends Subsystem {
   public static Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ultrasonic1Port, RobotMap.ultrasonic2Port);
   public void getDistance(){
     Ultrasonic.setAutomaticMode(true);
-    //System.println("Dist (in):" + ultrasonic.getRangeInches());
+    System.out.println("Dist (in):" + ultrasonic.getRangeInches());
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new printVal());
   }
 }
