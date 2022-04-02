@@ -11,7 +11,7 @@ import frc.robot.Subsystems.UltrasonicTest;
 public class printVal extends Command {
   public printVal() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.ultrasonic);
   }
 
   // Called just before this Command runs the first time
@@ -21,6 +21,7 @@ public class printVal extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    // System.out.println("Getting distance");
     Robot.ultrasonic.getDistance();
   }
 

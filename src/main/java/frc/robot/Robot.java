@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+import frc.robot.Commands.printVal;
 import frc.robot.Subsystems.*;
 import frc.robot.Subsystems.UltrasonicTest;
 
@@ -41,6 +42,9 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_oi.bindButton();
     System.out.println("init");
+
+
+    //ultrasonic.setDefaultCommand(new printVal());
   }
 
   /**
