@@ -6,8 +6,8 @@ package frc.robot.Commands;
 import frc.robot.*;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RetractArm extends Command {
-  public RetractArm() {
+public class RetractHigh extends Command {
+  public RetractHigh() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
