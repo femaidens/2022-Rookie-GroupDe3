@@ -10,10 +10,15 @@ public class RobotMap {
 
     public static int Shooter2MotorPort = 20;
 
-    public static int shooterPisForwardPort = 21;
-    public static int shooterPisBackwardPort = 22;
+    public static int gearPisForwardPort = 21;
+    public static int gearPisBackwardPort = 22;
+    public static int latchPisForwardPort = 23;
+    public static int latchPisBackwardPort = 24;
+
 
     //public static int shooter2EncoderPort = 23;
     
     public static int reloadButtonPort = 7;
+
+    public static int shoot2ButtonPort = 8;
 }

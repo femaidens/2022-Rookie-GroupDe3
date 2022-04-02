@@ -20,13 +20,14 @@ public class Shooter2 extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static CANSparkMax motor = new CANSparkMax(RobotMap.Shooter2MotorPort, MotorType.kBrushless);
-  public static DoubleSolenoid shooterPis = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPisForwardPort, RobotMap.shooterPisBackwardPort);
+  public static DoubleSolenoid latchPis = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.latchPisForwardPort, RobotMap.latchPisBackwardPort);
   //public static DutyCycleEncoder encoder = new DutyCycleEncoder(RobotMap.shooter2EncoderPort);, reset encoder at the start
   public static RelativeEncoder encoder = motor.getEncoder();
+  public static DoubleSolenoid gearPis = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.gearPisForwardPort, RobotMap.gearPisBackwardPort);
 
   public void shoot(){
     if (OI.joy.getRawAxis(3) > 0.2){
-      shooterPis.set(DoubleSolenoid.Value.kForward);
+      latchPis.set(DoubleSolenoid.Value.kForward);
     }
   }
   public void alignShooter(){
@@ -38,9 +39,23 @@ public class Shooter2 extends Subsystem {
       motor.stopMotor();
     }
   }
-  public void reset(){
-    shooterPis.set(DoubleSolenoid.Value.kReverse);
+
+  public void extendLatchPis(){
+    latchPis.set(DoubleSolenoid.Value.kForward);
   }
+
+  public void retractLatchPis(){
+    latchPis.set(DoubleSolenoid.Value.kReverse);
+  }
+
+  public void extendGearPis(){
+    latchPis.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void retractGearPis(){
+    latchPis.set(DoubleSolenoid.Value.kReverse);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

@@ -4,14 +4,16 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.*;
-import frc.robot.Commands.reset;
+import frc.robot.Commands.*; 
 import edu.wpi.first.wpilibj.Joystick;
 
 /** Add your docs here. */
 public class OI {
     public static Joystick joy = new Joystick(RobotMap.joyPort);
     public static JoystickButton reloadButton = new JoystickButton(joy, RobotMap.reloadButtonPort);
+    public static JoystickButton shoot2Button = new JoystickButton(joy, RobotMap.shoot2ButtonPort);
     public void bindButton(){
         reloadButton.whenPressed(new reset());
+        shoot2Button.whenPressed(new shoot2());
     }
 }
