@@ -20,10 +20,8 @@ public class ExtendArm extends Command {
   static double derivative = 0.0;
   static double adjust = 0.0;
   static double time = 0.1;
-  static double ticks = 10; //arbitrary # of ticks for 37 degs
+  static double desired = 25; //arbitrary # in whatever units
   public ExtendArm() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.intake);
   }
 
@@ -35,7 +33,7 @@ public class ExtendArm extends Command {
   @Override
   protected void execute() {
     previous_error = current_error;
-    current_error = ticks - IntakeBall.encoder.getDistance();
+    current_error = desired - IntakeBall.encoder.getDistance();
     derivative = (current_error-previous_error)/time;
     adjust = KP*current_error + KI*integral + KD*derivative;
 
@@ -46,9 +44,9 @@ public class ExtendArm extends Command {
       adjust -= min_command;
     } */
 
-    if (current_error > 0.25) 
+    if (current_error < -0.25) 
       Robot.intake.extend();
-    else if (current_error < -0.25)
+    else if (current_error > 0.25)
       Robot.intake.retract();
   }
 

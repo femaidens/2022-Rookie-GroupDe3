@@ -20,7 +20,7 @@ public class RetractLow extends Command {
   static double derivative = 0.0;
   static double adjust = 0.0;
   static double time = 0.1;
-  static double ticks = 5; //arbitrary # of ticks for 37 degs
+  static double desired = 5; //arbitrary # in what distance for retractLow angle
   public RetractLow() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.intake);
@@ -30,7 +30,7 @@ public class RetractLow extends Command {
   @Override
   protected void initialize() {
     previous_error = current_error;
-    current_error = ticks - IntakeBall.encoder.getDistance();
+    current_error = desired - IntakeBall.encoder.getDistance(); //if a clock, then return pos, not the # traveled
     derivative = (current_error-previous_error)/time;
     adjust = KP*current_error + KI*integral + KD*derivative;
     
@@ -41,9 +41,10 @@ public class RetractLow extends Command {
       adjust -= min_command;
     } */
 
-    if (current_error < 0.25) 
+    // if motor moving clockwise is extend
+    if (current_error < -0.25) //less than desired
       Robot.intake.extend();
-    else if (current_error > -0.25)
+    else if (current_error > 0.25) //more than desired
       Robot.intake.retract();
   }
 
@@ -64,5 +65,7 @@ public class RetractLow extends Command {
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+    end();
+  }
 }
