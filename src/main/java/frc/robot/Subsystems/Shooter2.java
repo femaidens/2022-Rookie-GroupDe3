@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.OI;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -25,6 +26,7 @@ public class Shooter2 extends Subsystem {
   public static RelativeEncoder encoder = motor.getEncoder();
   public static DoubleSolenoid gearPis = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.gearPisForwardPort, RobotMap.gearPisBackwardPort);
   public static boolean canShoot;
+  public static Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
   public void shoot(){
     if (OI.joy.getRawAxis(3) > 0.2){
       latchPis.set(DoubleSolenoid.Value.kForward);
