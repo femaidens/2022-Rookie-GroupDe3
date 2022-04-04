@@ -33,9 +33,9 @@ public class ExtendArm extends Command {
   @Override
   protected void execute() {
     previous_error = current_error;
-    current_error = desired - IntakeBall.encoder.getDistance();
+    current_error = desired - IntakeBall.encoder.getDistance(); 
     derivative = (current_error-previous_error)/time;
-    adjust = KP*current_error + KI*integral + KD*derivative;
+    adjust = KP*current_error + KI*integral + KD*derivative; //the adjust has the same sign as current error
 
     /*if (current_error > min_error){
       adjust += min_command;
@@ -44,9 +44,9 @@ public class ExtendArm extends Command {
       adjust -= min_command;
     } */
 
-    if (current_error < -0.25) 
+    if (adjust < -0.25) //less than desired
       Robot.intake.extend();
-    else if (current_error > 0.25)
+    else if (adjust > 0.25) //more than desired
       Robot.intake.retract();
   }
 

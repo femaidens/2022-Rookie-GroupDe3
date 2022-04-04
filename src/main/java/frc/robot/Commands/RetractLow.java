@@ -42,9 +42,9 @@ public class RetractLow extends Command {
     } */
 
     // if motor moving clockwise is extend
-    if (current_error < -0.25) //less than desired
+    if (adjust < -0.25) //less than desired
       Robot.intake.extend();
-    else if (current_error > 0.25) //more than desired
+    else if (adjust > 0.25) //more than desired
       Robot.intake.retract();
   }
 
