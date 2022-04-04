@@ -6,6 +6,7 @@ package frc.robot.Commands;
 import frc.robot.Robot;
 import frc.robot.Subsystems.Shooter2;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class reset extends Command {
   public reset() {
@@ -36,6 +37,9 @@ public class reset extends Command {
   protected void end() {
     Robot.shooter2.extendLatchPis();
     Robot.shooter2.retractGearPis();
+    Shooter2.canShoot = true;
+    //green
+    SmartDashboard.putBoolean("shooter down", Robot.shooter2.readyShoot());
   }
 
   // Called when another command which requires one or more of the same

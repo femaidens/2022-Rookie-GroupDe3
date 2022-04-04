@@ -38,6 +38,8 @@ public class shoot2 extends Command {
   @Override
   protected void end() {
     Robot.shooter2.extendGearPis();
+    Shooter2.canShoot = false;
+    //red
   }
 
   // Called when another command which requires one or more of the same

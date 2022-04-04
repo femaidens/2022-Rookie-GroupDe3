@@ -24,7 +24,7 @@ public class Shooter2 extends Subsystem {
   //public static DutyCycleEncoder encoder = new DutyCycleEncoder(RobotMap.shooter2EncoderPort);, reset encoder at the start
   public static RelativeEncoder encoder = motor.getEncoder();
   public static DoubleSolenoid gearPis = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.gearPisForwardPort, RobotMap.gearPisBackwardPort);
-
+  public static boolean canShoot;
   public void shoot(){
     if (OI.joy.getRawAxis(3) > 0.2){
       latchPis.set(DoubleSolenoid.Value.kForward);
@@ -54,6 +54,9 @@ public class Shooter2 extends Subsystem {
 
   public void retractGearPis(){
     latchPis.set(DoubleSolenoid.Value.kReverse);
+  }
+  public boolean readyShoot(){
+    return canShoot;
   }
 
   @Override
